@@ -17,11 +17,7 @@ def test_str_input():
 
 
 def test_missing_file():
-<<<<<<< HEAD
-    fname = pathlib.Path('teststs.fdfd')
-=======
     fname = pathlib.Path("teststs.fdfd")
->>>>>>> 1580ef0eec1b827111b24fde6033d712d6876de2
     with pytest.raises(ValueError):
         QuestionnaireAnalysis(fname)
 
@@ -33,16 +29,6 @@ def test_wrong_input_type():
 
 
 def test_data_attr_exists():
-<<<<<<< HEAD
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    assert hasattr(q, 'data')
-
-
-def test_data_attr_is_df():
-    fname = 'data.json'
-=======
     fname = "data.json"
     q = QuestionnaireAnalysis(fname)
     q.read_data()
@@ -51,33 +37,12 @@ def test_data_attr_is_df():
 
 def test_data_attr_is_df():
     fname = "data.json"
->>>>>>> 1580ef0eec1b827111b24fde6033d712d6876de2
     q = QuestionnaireAnalysis(fname)
     q.read_data()
     assert isinstance(q.data, pd.DataFrame)
 
 
 def test_correct_age_distrib_hist():
-<<<<<<< HEAD
-    truth = np.load('tests_data/q1_hist.npz')
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    assert np.array_equal(q.show_age_distrib()[0], truth['hist'])
-
-
-def test_correct_age_distrib_edges():
-    truth = np.load('tests_data/q1_hist.npz')
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    assert np.array_equal(q.show_age_distrib()[1], truth['edges'])
-
-
-def test_email_validation():
-    truth = pd.read_csv('tests_data/q2_email.csv')
-    fname = 'data.json'
-=======
     truth = np.load("tests_data/q1_hist.npz")
     fname = "data.json"
     q = QuestionnaireAnalysis(fname)
@@ -96,7 +61,6 @@ def test_correct_age_distrib_edges():
 def test_email_validation():
     truth = pd.read_csv("tests_data/q2_email.csv")
     fname = "data.json"
->>>>>>> 1580ef0eec1b827111b24fde6033d712d6876de2
     q = QuestionnaireAnalysis(fname)
     q.read_data()
     corrected = q.remove_rows_without_mail()
@@ -104,62 +68,12 @@ def test_email_validation():
 
 
 def test_fillna_rows():
-<<<<<<< HEAD
-    truth = np.load('tests_data/q3_fillna.npy')
-    fname = 'data.json'
-=======
     truth = np.load("tests_data/q3_fillna.npy")
     fname = "data.json"
->>>>>>> 1580ef0eec1b827111b24fde6033d712d6876de2
     q = QuestionnaireAnalysis(fname)
     q.read_data()
     _, rows = q.fill_na_with_mean()
     assert np.array_equal(truth, rows)
-<<<<<<< HEAD
-    
-
-def test_fillna_df():
-    truth = pd.read_csv('tests_data/q3_fillna.csv')
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    df, _ = q.fill_na_with_mean()
-    df.equals(truth)
-
-def test_score_exists():
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    df = q.score_subjects()
-    assert "score" in df.columns
-
-
-def test_score_dtype():
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    df = q.score_subjects()
-    assert isinstance(df["score"].dtype, pd.UInt8Dtype)
-
-
-def test_score_results():
-    truth = pd.read_csv('tests_data/q4_score.csv', index_col=0).astype("UInt8").squeeze()    
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    df = q.score_subjects()
-    assert df["score"].equals(truth)
-
-
-def test_correlation():
-    truth = pd.read_csv('tests_data/q5_corr.csv').set_index(['gender', 'age'])
-    fname = 'data.json'
-    q = QuestionnaireAnalysis(fname)
-    q.read_data()
-    df = q.correlate_gender_age()
-    pd.testing.assert_frame_equal(df, truth)
-
-=======
 
 
 def test_fillna_df():
@@ -205,4 +119,3 @@ def test_correlation():
     q.read_data()
     df = q.correlate_gender_age()
     pd.testing.assert_frame_equal(df, truth)
->>>>>>> 1580ef0eec1b827111b24fde6033d712d6876de2
